@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class SeparateChatAssistantConfig {
-    //注入持久化对象
+public class XiaozhiAgentConfig {
     @Autowired
     private MongoChatMemoryStore mongoChatMemoryStore;
     @Bean
-    ChatMemoryProvider chatMemoryProvider() {
+    ChatMemoryProvider chatMemoryProviderXiaozhi() {
         return memoryId -> MessageWindowChatMemory.builder()
                 .id(memoryId)
-                .maxMessages(10)
+                .maxMessages(20)
                 .chatMemoryStore(mongoChatMemoryStore).build();
     }
+
 }

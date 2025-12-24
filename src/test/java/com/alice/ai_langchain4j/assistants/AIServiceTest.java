@@ -34,7 +34,11 @@ public class AIServiceTest {
     }
     @Autowired
     private SeparateChatAssistant separateChatAssistant;
-
+    @Test
+    public void testUserInfo() {
+        String answer = separateChatAssistant.chat3(1, "对话记录的前两句话是什么", "翠花", 18);
+        System.out.println(answer);
+    }
     @Test
     public void testChatMemory4() {
         String answer1 = separateChatAssistant.chat(1,"我是小红");
