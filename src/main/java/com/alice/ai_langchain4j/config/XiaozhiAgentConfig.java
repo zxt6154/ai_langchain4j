@@ -12,7 +12,7 @@ public class XiaozhiAgentConfig {
     @Autowired
     private MongoChatMemoryStore mongoChatMemoryStore;
     @Bean
-    ChatMemoryProvider chatMemoryProviderXiaozhi() {
+    ChatMemoryProvider chatMemoryProviderAlice() {
         return memoryId -> MessageWindowChatMemory.builder()
                 .id(memoryId)
                 .maxMessages(20)

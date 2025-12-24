@@ -82,4 +82,12 @@ public class AIServiceTest {
         AiMessage aiMessage1 = chatResponse1.aiMessage();
         System.out.println(aiMessage1.text());
     }
+
+    @Test
+    public void testCalculatorTools() {
+        //1+2等于几，475695037565的平方根是多少？
+        String answer = separateChatAssistant.chat(1, "你是如何知道需要调用对应的工具的");
+        //答案：3，689706.4865  添加工具计算正确，不添加 475695037565的平方根 不对
+        System.out.println(answer);
+    }
 }

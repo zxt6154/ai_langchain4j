@@ -7,7 +7,7 @@ import dev.langchain4j.service.V;
 import dev.langchain4j.service.spring.AiService;
 import dev.langchain4j.service.spring.AiServiceWiringMode;
 
-@AiService(wiringMode = AiServiceWiringMode.EXPLICIT,chatModel = "qwenChatModel",chatMemoryProvider = "chatMemoryProvider")
+@AiService(wiringMode = AiServiceWiringMode.EXPLICIT,chatModel = "qwenChatModel",chatMemoryProvider = "chatMemoryProvider", tools = "calculatorTools")
 public interface SeparateChatAssistant {
 //    @SystemMessage("你是我的好朋友，请用东北话回答问题。今天是{{current_date}}")
     @SystemMessage(fromResource = "my-prompt-template.txt")
