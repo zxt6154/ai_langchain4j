@@ -6,8 +6,10 @@ import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ import java.util.List;
 public class AliceAgentConfig {
     @Autowired
     private MongoChatMemoryStore mongoChatMemoryStore;
+    @Autowired
+    private EmbeddingStore embeddingStore;
+    @Autowired
+    private EmbeddingModel embeddingModel;
+
     @Bean
     ChatMemoryProvider chatMemoryProviderAlice() {
         return memoryId -> MessageWindowChatMemory.builder()
@@ -38,5 +45,15 @@ public class AliceAgentConfig {
         EmbeddingStoreIngestor.ingest(list, embeddingStore);
 
         return EmbeddingStoreContentRetriever.from(embeddingStore);
+    }
+    @Bean
+    ContentRetriever contentRetrieverPinecone() {
+        return EmbeddingStoreContentRetriever
+                .builder()
+                .embeddingModel(embeddingModel)
+                .embeddingStore(embeddingStore)
+                .maxResults(1)
+                .minScore(0.8)
+                .build();
     }
 }
