@@ -41,12 +41,8 @@ public class AIServiceTest {
     }
     @Test
     public void testChatMemory4() {
-        String answer1 = separateChatAssistant.chat(1,"我是小红");
+        String answer1 = separateChatAssistant.chat(3,"北京协和医院联系电话是什么");
         System.out.println(answer1);
-        String answer2 = separateChatAssistant.chat(1,"我是谁");
-        System.out.println(answer2);
-        String answer3 = separateChatAssistant.chat(2,"我是谁");
-        System.out.println(answer3);
     }
     @Autowired
     private MemoryAssistant memoryAssistant;
